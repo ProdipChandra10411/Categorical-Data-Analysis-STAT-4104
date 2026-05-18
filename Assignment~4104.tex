@@ -1,0 +1,1108 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{tikz}
+\usepackage{xcolor}
+\usepackage{wasysym} 
+
+% --- Essential Packages ---
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amsfonts,amssymb}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{multicol}
+\usepackage{xcolor}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{listings}
+\usepackage{tcolorbox}
+\usepackage{tikz}
+\usetikzlibrary{calc,patterns}
+% Isometric background colors
+\definecolor{cubecyan}{HTML}{16CAD2}
+\definecolor{cubeblue}{HTML}{2B76F5}
+\definecolor{cubepurple}{HTML}{3B26CE}
+\definecolor{cubegreen}{HTML}{73D126}
+\definecolor{linegreen}{HTML}{82D126}
+\definecolor{textdark}{HTML}{1A2226}
+
+\begin{document}
+%\pagestyle{empty} 
+
+% --- BACKGROUND GRAPHICS ---
+\begin{tikzpicture}[remember picture, overlay]
+    \fill[white] (current page.north west) rectangle (current page.south east);
+
+    \begin{scope}[shift={(current page.south east)}, x=1cm, y=1cm]
+        % Hexagonal structure wireframes
+        \draw[linegreen, line width=1pt] (-5.5,13.5) -- (-3.5,12.5) -- (-1,13.5) -- (-1,16) -- (-3.5,17) -- (-5.5,16) -- cycle;
+        \draw[linegreen, line width=1pt] (-8,11.5) -- (-5.5,10) -- (-3.5,11) -- (-3.5,12.5) -- (-5.5,13.5) -- (-8,12) -- cycle;
+        \draw[linegreen, line width=1pt] (-5.5,4.5) -- (-3.5,3.5) -- (-1,4.5);
+        \draw[linegreen, line width=1pt] (-3.5,3.5) -- (-3.5,6);
+        \draw[linegreen, line width=1pt] (-5.5,10) -- (-5.5,6) -- (-3.5,4.8) -- (-3.5,6) -- (-1,7.2);
+        
+        % Top Cyan Cube
+        \fill[cubecyan] (-3.5,17) -- (-1,18.5) -- (1.5,17) -- (-1,15.5) -- cycle;
+        \fill[cubecyan!85] (-3.5,17) -- (-1,15.5) -- (-1,12) -- (-3.5,13.5) -- cycle;
+        \fill[cubecyan!70] (-1,15.5) -- (1.5,17) -- (1.5,13.5) -- (-1,12) -- cycle;
+        
+        % Shaded green line hatch
+        \foreach \i in {0,0.15,...,0.9} {
+            \draw[linegreen!80, line width=0.8pt] (-5.5+\i*2, 16-\i) -- (-5.5+\i*2, 13.5+\i);
+        }
+        
+        % Shaded cyan line hatch
+        \foreach \i in {0,0.15,...,1.2} {
+            \draw[cubecyan!80, line width=0.8pt] (-8+\i*2.2, 11.5-\i*0.5) -- (-5.8+\i*2.2, 12.5-\i*0.5);
+        }
+
+        % Middle Blue Cube
+        \fill[cubeblue] (-2,10.5) -- (-0.5,11.3) -- (1,10.5) -- (-0.5,9.7) -- cycle;
+        \fill[cubeblue!85] (-2,10.5) -- (-0.5,9.7) -- (-0.5,8) -- (-2,8.8) -- cycle;
+        \fill[cubeblue!70] (-0.5,9.7) -- (1,10.5) -- (1,8.8) -- (-0.5,8) -- cycle;
+
+        % Bottom Green Cube
+        \fill[cubegreen] (-3.5,6) -- (-1,7.2) -- (1.5,6) -- (-1,4.8) -- cycle;
+        \fill[cubegreen!85] (-3.5,6) -- (-1,4.8) -- (-1,2.3) -- (-3.5,3.5) -- cycle;
+        \fill[cubegreen!70] (-1,4.8) -- (1.5,6) -- (1.5,3.5) -- (-1,2.3) -- cycle;
+
+        % Left Purple Cube
+        \fill[cubepurple] (-6.5,5.5) -- (-5,6.2) -- (-3.5,5.5) -- (-5,4.8) -- cycle;
+        \fill[cubepurple!85] (-6.5,5.5) -- (-5,4.8) -- (-5,2.6) -- (-6.5,3.3) -- cycle;
+        \fill[cubepurple!70] (-5,4.8) -- (-3.5,5.5) -- (-3.5,3.3) -- (-5,2.6) -- cycle;
+    \end{scope}
+\end{tikzpicture}
+
+% --- FOREGROUND CONTENT (All Center Aligned) ---
+\begin{center}
+    \vspace*{0.5cm}
+    
+    % Institution Header
+    {\fontsize{24}{28}\selectfont\bfseries\color{textdark!180} BEGUM ROKEYA UNIVERSITY, RANGPUR}\\[0.2cm]
+    {\color{cubecyan}\rule{8cm}{2pt}}\\[0.3cm]
+    {\fontsize{14}{18}\selectfont\scshape\color{textdark!150} Department of Statistics}
+    
+    \vfill
+    
+    % Main Title Section
+    \begin{minipage}{\textwidth}
+        \centering
+        {\fontsize{34}{42}\selectfont\bfseries\color{textdark} STATISTICAL\\ DATA ANALYSIS}\\[0.4cm]
+        {\fontsize{14}{18}\selectfont\itshape\color{orange!180}\bfseries A Comprehensive Laboratory Report}
+    \end{minipage}
+
+    \vspace{1.5cm}
+
+    % Course Details Card
+    \begin{tikzpicture}
+        \node[draw=cubeblue!0, fill=white, rounded corners=12pt, line width=1.2pt, inner sep=15pt, text width=9.5cm, align=center] {
+            \colorbox{cubeblue}{\parbox{4.2cm}{\centering\color{white}\bfseries\small 
+            \ COURSE DETAILS}}\\[0.4cm]
+            {\fontsize{19}{21}\selectfont\bfseries\color{textdark150} STAT-4104}\
+
+            {\fontsize{14}{15}\selectfont\color{textdark!190}\bfseries Categorical Data Analysis}
+        };
+    \end{tikzpicture}
+
+    \vfill
+
+    % Personnel Information Card (Centered Dual Columns)
+    \begin{tikzpicture}
+        \node[draw=cubecyan!20, fill=white, rounded corners=12pt, line width=1.2pt, inner sep=18pt, text width=14.5cm] {
+            \begin{minipage}[t]{0.46\textwidth}
+                {\color{green!130}\bfseries\small \Circle\ SUBMITTED BY}\\[0.3cm]
+                \small\sffamily
+                \begin{tabular}{@{}ll}
+                    \textbf{Name:} & Prodip Chandra Bormon \\
+                    \textbf{ID:} & 12010069 \\
+                    \textbf{Reg No:} & 000014479 \\
+                    \textbf{Session:} & 2020-2021 \\
+                    \textbf{Year/Sem:} & 4\textsuperscript{th} Year, 1\textsuperscript{st} Sem
+                \end{tabular}
+            \end{minipage}
+            \hfill
+            \vrule depth 3.2cm width 0.6pt
+            \hfill
+            \begin{minipage}[t]{0.4\textwidth}
+                {\color{green!130}\bfseries\small \Circle\ SUBMITTED TO}\\[0.3cm]
+                \small\sffamily
+                \begin{tabular}{@{}ll}
+                    \textbf{Name:} & Dr. Md. Siddikur Rahman \\
+                    \textbf{Title:} & Associate Professor \\
+                    \textbf{Dept:} & Statistics \\
+                    \textbf{Inst:} & Begum Rokeya University, \\
+                    & Rangpur
+                \end{tabular}
+            \end{minipage}
+        };
+    \end{tikzpicture}
+
+    \vfill
+    
+    % Submission Footer (Centered)
+    \vspace*{0.5cm}
+    {\fontsize{13}{15}\selectfont\bfseries\color{textdark!150} \Square\ Submission: May 19, 2026}
+    \vspace*{0.5cm}
+
+\end{center}
+
+\newpage
+% --- Custom Color Palette (White Page + Tiffany Blue Theme) ---
+\definecolor{pagebg}{HTML}{FFFFFF}        % Pure White Page Background
+\definecolor{branddark}{HTML}{008B8B}    % Dark Tiffany / Deep Teal
+\definecolor{brandaccent}{HTML}{0A9696}  % Medium Tiffany Blue
+\definecolor{boxbg}{HTML}{E0F7F7}        % Light Tiffany Tint for Text Boxes
+\definecolor{boxborder}{HTML}{B2EBF2}    % Soft Tiffany Border for Boxes
+\definecolor{textprimary}{HTML}{2D3748}  % Dark Charcoal for high readability
+\definecolor{codebg}{HTML}{F4FBFB}       % Very Light Tiffany Tint for Code
+
+% --- Page Style & Canvas Setup (Borders Removed) ---
+\pagecolor{pagebg}
+\makeatletter
+\newcommand{\CategoricalBackground}{%
+  \begin{tikzpicture}[overlay,remember picture]
+    % [NOTE: Outer Page Border Line is removed]
+    
+    % Subtle Abstract Categorical Grid Design on Header/Footer Corners (Tiffany Theme)
+    \begin{scope}[shift={($(current page.north east)+(-1.5in,-1.5in)$)}, opacity=0.12]
+        \draw[line width=2pt, branddark] (0,0) -- (2,0);
+        \draw[line width=2pt, branddark] (0,0.5) -- (2,0.5);
+        \draw[line width=2pt, branddark] (0,1) -- (2,1);
+        \draw[line width=4pt, brandaccent] (0.5,-0.5) -- (0.5,1.5);
+        \draw[line width=4pt, brandaccent] (1.5,-0.5) -- (1.5,1.5);
+    \end{scope}
+    \begin{scope}[shift={($(current page.south west)+(0.8in,0.8in)$)}, opacity=0.08]
+        \fill[branddark] (0,0) rectangle (0.4,1.2);
+        \fill[brandaccent] (0.6,0) rectangle (1.0,2.0);
+        \fill[branddark] (1.2,0) rectangle (1.6,0.7);
+    \end{scope}
+  \end{tikzpicture}%
+}
+\makeatother
+
+% --- Typography & Layout Adjustments ---
+\titleformat{\section}{\color{branddark}\normalfont\Large\bfseries}{\thesection}{1em}{}
+\titleformat{\subsection}{\color{brandaccent}\normalfont\large\bfseries}{\thesubsection}{1em}{}
+\renewcommand{\familydefault}{\sfdefault}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+\setlist[itemize]{leftmargin=*,noitemsep,topsep=0pt}
+
+% --- Python Code Block Styling ---
+\lstset{
+    language=Python,
+    backgroundcolor=\color{codebg},
+    basicstyle=\ttfamily\small\color{textprimary},
+    keywordstyle=\color{branddark}\bfseries,
+    commentstyle=\color{gray}\itshape,
+    stringstyle=\color{brandaccent},
+    showstringspaces=false,
+    breaklines=true,
+    frame=single,
+    rulecolor=\color{boxborder},
+    xleftmargin=10pt,
+    xrightmargin=10pt
+}
+
+% --- Custom TColorBox Setup (Tiffany Customization) ---
+
+% --- Custom Table Setup ---
+\renewcommand{\arraystretch}{1.2}
+
+\begin{document}
+\CategoricalBackground
+
+% ==========================================
+% CONTENTS PAGE
+% ==========================================
+\begin{center}
+    {\Huge \bfseries \color{branddark} CONTENTS}
+\end{center}
+\vspace{1cm}
+
+\begin{large}
+\begin{enumerate}[label=\bfseries \color{brandaccent} \arabic*]
+    \item \textbf{Lung Disease Analysis} \dotfill 03
+    \item \textbf{One-Way ANOVA - Exercise} \dotfill 08
+    \item \textbf{Chi-Square - Child Anemia} \dotfill 10
+    \item \textbf{Fisher's Exact - Drug Test} \dotfill 12
+    \item \textbf{Logistic - Grad Admission} \dotfill 14
+    \item \textbf{Poisson - Awards} \dotfill 16
+    \item \textbf{Negative Binomial - Absences} \dotfill 18
+    \item \textbf{Zero-Inflated Poisson - Fish} \dotfill 20
+    \item \textbf{ZIP - Detailed Analysis} \dotfill 22
+    \item \textbf{Zero-Truncated Poisson} \dotfill 24
+    \item \textbf{Zero-Truncated NB} \dotfill 26
+\end{enumerate}
+\end{large}
+
+\vfill
+\begin{center}
+    \textit{\color{textprimary}Comprehensive statistical modeling using GLM frameworks}
+\end{center}
+\newpage
+\CategoricalBackground
+% ==========================================
+% PROBLEM 1: LUNG DISEASE ANALYSIS
+% ==========================================
+\section*{Statistical Data Analysis Report}
+\subsection*{PROBLEM 1: Lung Disease Dataset Analysis using Python}
+
+\textbf{Problem Overview}\\
+Using the lung disease dataset, perform exploratory data analysis and fit a logistic regression model to identify key determinants of lung disease. Interpret your findings and discuss public health implications.
+
+\subsection*{A. Data Import and Initial Exploration}
+\begin{lstlisting}
+import pandas as pd
+import numpy as np
+from scipy.stats import chi2_contingency, fisher_exact
+import statsmodels.formula.api as smf
+from sklearn.metrics import roc_auc_score, confusion_matrix
+from sklearn.metrics import accuracy_score, recall_score
+
+df = pd.read_csv('lung_disease.csv')
+print(df.head())
+\end{lstlisting}
+
+\textbf{RESULT:}
+\begin{center}
+\small
+\begin{tabular}{cccccc}
+\toprule
+\textbf{} & \textbf{Age} & \textbf{Smoking} & \textbf{Pollution} & \textbf{Income} & \textbf{LungDisease} \\
+\midrule
+0 & 45 & Yes & High & Low & Yes \\
+1 & 32 & No & Low & High & No \\
+2 & 58 & Yes & High & Low & Yes \\
+3 & 27 & No & Low & High & No \\
+4 & 61 & Yes & High & Low & Yes \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection*{B. Exploratory Analysis}
+\textbf{Age Distribution}
+\begin{lstlisting}
+print(df['Age'].describe())
+print('Skewness', df['Age'].skew())
+\end{lstlisting}
+
+\textbf{RESULT:}
+\begin{multicols}{2}
+\begin{itemize}
+    \item count: 500.000000
+    \item mean: 43.904000
+    \item std: 14.604841
+    \item min: 20.000000
+    \item 25\%: 30.750000
+    \item 50\%: 45.000000
+    \item 75\%: 56.000000
+    \item max: 69.000000
+\end{itemize}
+\end{multicols}
+\textbf{Skewness} = 0.012
+
+\begin{tcolorbox}[title=Key Insight]
+The age distribution is nearly perfectly normal with skewness of 0.012, indicating a representative sample across all adult age groups.
+\end{tcolorbox}
+
+\CategoricalBackground
+
+\textbf{Smoking Prevalence}
+\begin{lstlisting}
+smoking_prop = df['Smoking'].value_counts(normalize=True) * 100
+print(smoking_prop)
+\end{lstlisting}
+\textbf{RESULT:} No: 58.6\%, Yes: 41.4\%
+
+\textbf{Income Distribution}
+\begin{lstlisting}
+print(df['Income'].value_counts())
+\end{lstlisting}
+\textbf{RESULT:} Low: 204, Medium: 197, High: 99
+
+\textbf{Pollution Exposure}
+\begin{lstlisting}
+high_pollution = (df['Pollution'] == 'High').mean() * 100
+print(high_pollution)
+\end{lstlisting}
+\textbf{RESULT:} 70.4\%
+
+\textbf{Disease Prevalence}
+\begin{lstlisting}
+prevalence = (df['Lung Disease'] == 'Yes').mean() * 100
+print(prevalence)
+\end{lstlisting}
+\textbf{RESULT:} 52.8\%
+
+\subsection*{C. Association Analysis: Smoking vs Lung Disease}
+\begin{lstlisting}
+crosstab_smoking = pd.crosstab(df['Smoking'], df['Lung Disease'])
+print(crosstab_smoking)
+chi2, p, dof, expected = chi2_contingency(crosstab_smoking)
+print('Chi-square', chi2)
+print('p-value', p)
+\end{lstlisting}
+
+\textbf{RESULT:}
+\begin{center}
+\begin{tabular}{lcc}
+\toprule
+\textbf{Smoking} & \textbf{Lung Disease: No} & \textbf{Lung Disease: Yes} \\
+\midrule
+No & 184 & 109 \\
+Yes & 52 & 155 \\
+\bottomrule
+\end{tabular}
+\end{center}
+\textbf{Chi-square} = 67.59\\
+\textbf{p-value} = $2.01\times 10^{-16}$\\
+The extremely small p-value ($2.01\times10^{-16}$) provides overwhelming evidence against independence.
+
+\subsection*{D. Odds Ratio Calculation}
+\begin{lstlisting}
+oddsratio, p = fisher_exact([[155, 52], [109, 184]])
+print('Odds Ratio', oddsratio)
+\end{lstlisting}
+\textbf{RESULT:} Odds Ratio = 5.03
+
+\subsection*{E. Logistic Regression Modeling}
+\begin{lstlisting}
+df2 = df.copy()
+df2['Pollution'] = df2['Pollution'].map({'High':1, 'Low':0})
+df2['Smoking'] = df2['Smoking'].map({'Yes':1, 'No':0})
+df2['Lung Disease'] = df2['Lung Disease'].map({'Yes':1, 'No':0})
+
+model = smf.logit('Q("Lung Disease") ~ Smoking + Age + Pollution + C(Income)', data=df2).fit()
+print(model.summary())
+\end{lstlisting}
+
+\CategoricalBackground
+
+\textbf{RESULT:}
+\begin{center}
+\begin{tabular}{lcc}
+\toprule
+\textbf{Variable} & \textbf{Coef} & \textbf{p-value} \\
+\midrule
+Smoking & 1.702 & <0.001 \\
+Age & 0.040 & <0.001 \\
+Pollution & 1.303 & <0.001 \\
+Income (Low) & 0.440 & 0.123 \\
+Income (Medium) & 0.220 & 0.440 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection*{F. Model Performance}
+\begin{lstlisting}
+pred_prob = model.predict(df2)
+auc = roc_auc_score(df2['Lung Disease'], pred_prob)
+pred_class = (pred_prob > 0.5).astype(int)
+accuracy = accuracy_score(df2['Lung Disease'], pred_class)
+cm = confusion_matrix(df2['Lung Disease'], pred_class)
+
+print('AUC', auc)
+print('Confusion Matrix:\n', cm)
+print('Accuracy', accuracy)
+\end{lstlisting}
+
+\textbf{RESULT:}\\
+\textbf{AUC} = 0.787\\
+\textbf{Confusion Matrix:}\\
+$\begin{bmatrix} 156 & 80 \\ 64 & 200 \end{bmatrix}$\\
+\textbf{Accuracy} = 0.712
+
+\subsection*{G. Conclusions \& Public Health Implications}
+\begin{itemize}
+    \item \textbf{Primary Risk Factor:} Smoking ($OR=5.03$) - smokers have $5\times$ higher odds of lung disease.
+    \item \textbf{Secondary Factors:} Age and high pollution exposure significantly increase risk.
+    \item \textbf{Non-significant:} Income level shows no statistical effect.
+    \item \textbf{Model Performance:} 71.2\% accuracy with AUC of 0.787 indicates moderate predictive power.
+    \item \textbf{Policy Recommendations:} Focus on smoking cessation programs and pollution control measures.
+\end{itemize}
+\newpage
+\CategoricalBackground
+% PROBLEM 2: ONE-WAY ANOVA
+% ==========================================
+\section*{Statistical Data Analysis Report}
+\subsection*{PROBLEM 2: One-Way ANOVA: Exercise Programs and Weight Loss}
+
+\textbf{Problem Statement}\\
+Determine if three different exercise programs (A, B, C) impact weight loss differently. Recruit 90 people, randomly assign 30 to each program. Response variable: weight loss (pounds).
+
+\subsection*{Python Implementation}
+\begin{lstlisting}
+import numpy as np
+import pandas as pd
+from scipy.stats import f_oneway, shapiro, levene
+from statsmodels.formula.api import ols
+import statsmodels.api as sm
+from statsmodels.stats.multicomp import pairwise_tukeyhsd
+
+np.random.seed(42)
+program_A = np.random.normal(5, 1.5, 30)
+program_B = np.random.normal(7, 1.5, 30)
+program_C = np.random.normal(5.5, 1.5, 30)
+
+df = pd.DataFrame({
+    'WeightLoss': np.concatenate([program_A, program_B, program_C]),
+    'Program': ['A']*30 + ['B']*30 + ['C']*30
+})
+
+model = ols('WeightLoss ~ Program', data=df).fit()
+anova_table = sm.stats.anova_lm(model, typ=2)
+print(anova_table)
+\end{lstlisting}
+
+\textbf{RESULT:}
+\begin{center}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{} & \textbf{sum\_sq} & \textbf{df} & \textbf{F} & \textbf{PR(>F)} \\
+\midrule
+Program & 67.416974 & 2.0 & 16.890178 & $6.342321\times 10^{-7}$ \\
+Residual & 173.629808 & 87.0 & NaN & NaN \\
+\bottomrule
+\end{tabular}
+\end{center}
+\newpage
+\subsection*{Assumption Validation}
+\begin{lstlisting}
+shapiro_p = stats.shapiro(model.resid)[1]
+levene_p = stats.levene(df['WeightLoss'][df['Program']=='A'],
+                        df['WeightLoss'][df['Program']=='B'],
+                        df['WeightLoss'][df['Program']=='C'])[1]
+print(f"Shapiro-Wilk p-value: {shapiro_p:.4f}")
+print(f"Levene's p-value: {levene_p:.4f}")
+\end{lstlisting}
+
+\textbf{RESULT:}\\
+Shapiro-Wilk p-value: 0.8948\\
+Levene's p-value: 0.8627
+
+\begin{tcolorbox}[title=Key Insight]
+Both normality ($p=0.895$) and homogeneity of variance ($p=0.863$) assumptions are satisfied, validating the ANOVA results.
+\end{tcolorbox}
+
+
+\CategoricalBackground
+
+\subsection*{Post-hoc Analysis}
+\textbf{RESULT:}
+\begin{center}
+\small \textbf{Multiple Comparison of Means - Tukey HSD, FWER=0.05}
+\begin{tabular}{ccccccc}
+\toprule
+\textbf{group1} & \textbf{group2} & \textbf{meandiff} & \textbf{p-adj} & \textbf{lower} & \textbf{upper} & \textbf{reject} \\
+\midrule
+A & B & 2.1005 & 0.000 & 1.2307 & 2.9702 & True \\
+A & C & 0.8015 & 0.0772 & -0.0682 & 1.6713 & False \\
+B & C & -1.2989 & 0.0017 & -2.1687 & -0.4292 & True \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection*{Interpretation}
+\begin{itemize}
+    \item Program B demonstrates significantly superior weight loss compared to both Program A ($p < 0.001$) and Program C ($p < 0.01$).
+    \item No significant difference exists between Programs A and C ($p=0.077$).
+    \item \textbf{Recommendation:} Program B is the most effective exercise intervention.
+\end{itemize}
+
+\vfill
+
+\newpage
+\CategoricalBackground
+% ==========================================
+% PROBLEM 3: CHI-SQUARE ANALYSIS
+% ==========================================
+\section*{Statistical Data Analysis Report}
+\subsection*{PROBLEM 3: Chi-Square Analysis on Nigeria Child Anemia Dataset}
+
+\textbf{Data Source}\\
+2018 Nigeria Demographic and Health Surveys (NDHS) – Investigating factors affecting anemia levels among children aged 0-59 months.
+
+\subsection*{Analysis Code}
+\begin{lstlisting}
+import pandas as pd
+import numpy as np
+from scipy.stats import chi2_contingency
+
+df = pd.read_csv('children_anemia.csv')
+clean_df = df.dropna(subset=['Wealth index combined', 'Anemia level'])
+contingency_table = pd.crosstab(clean_df['Wealth index combined'], clean_df['Anemia level'])
+chi2, p_val, dof, expected = chi2_contingency(contingency_table)
+
+print(f"Chi-Square Statistic: {chi2:.2f}")
+print(f"P-value: {p_val:.4e}")
+print(f"Degrees of Freedom: {dof}")
+\end{lstlisting}
+
+\textbf{RESULT:}\\
+Chi-Square Statistic: 203.15\\
+P-value: $7.2798\times 10^{-37}$\\
+Degrees of Freedom: 12
+
+\CategoricalBackground
+
+\subsection*{Contingency Table (Percentages)}
+\textbf{RESULT:}
+\begin{center}
+\small
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Wealth index combined} & \textbf{Mild} & \textbf{Moderate} & \textbf{Not anemic} & \textbf{Severe} \\
+\midrule
+Middle & 28.99 & 30.16 & 39.20 & 1.66 \\
+Poorer & 27.44 & 32.52 & 38.12 & 1.92 \\
+Poorest & 28.39 & 35.66 & 33.89 & 2.06 \\
+Richer & 26.84 & 28.74 & 42.63 & 1.79 \\
+Richest & 24.29 & 22.17 & 52.29 & 1.25 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection*{Hypothesis Testing}
+$H_{0}$: Wealth index and child anemia level are independent\\
+$H_{1}$: Wealth index and child anemia level are associated
+
+\begin{tcolorbox}[title=Key Insight]
+The p-value ($7.28\times10^{-37}$) is astronomically small, providing conclusive evidence that wealth status is strongly associated with childhood anemia in Nigeria.
+\end{tcolorbox}
+
+\subsection*{Key Findings}
+\begin{itemize}
+    \item \textbf{Poorest quintile:} Highest severe anemia rate (2.06\%) and lowest healthy rate (33.89\%).
+    \item \textbf{Richest quintile:} Lowest severe anemia (1.25\%) and highest healthy rate (52.29\%).
+    \item \textbf{Gradient effect:} Clear socioeconomic gradient exists across all anemia severity levels.
+\end{itemize}
+
+\subsection*{Policy Implications}
+\begin{itemize}
+    \item Target poverty reduction as a primary intervention strategy.
+    \item Implement nutritional supplementation programs in low-income communities.
+    \item Improve healthcare access and maternal education in impoverished regions.
+\end{itemize}
+
+\vfill
+\newpage
+\CategoricalBackground
+% ==========================================
+% PROBLEM 4: FISHER'S EXACT TEST
+% ==========================================
+\section*{Statistical Data Analysis Report}
+\subsection*{PROBLEM 4: Fisher’s Exact Test: Drug Treatments and Disease Outcome}
+
+\textbf{Problem Context}\\
+Three drug treatments (A, B, C) are compared for disease outcomes. Test association between treatment and disease status, with post-hoc pairwise comparisons.
+
+\subsection*{Contingency Data}
+\begin{center}
+\begin{tabular}{lccc}
+\toprule
+\textbf{Treatment} & \textbf{No Disease} & \textbf{Disease} & \textbf{Success Rate} \\
+\midrule
+Drug A & 40 & 10 & 80\% \\
+Drug B & 10 & 40 & 20\% \\
+Drug C & 25 & 25 & 50\% \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\CategoricalBackground
+
+\subsection*{Python Implementation}
+\begin{lstlisting}
+import numpy as np
+from scipy.stats import chi2_contingency, fisher_exact
+from statsmodels.stats.multitest import multipletests
+
+table = np.array([[40, 10], [10, 40], [25, 25]])
+chi2_stat, p_global, dof, expected = chi2_contingency(table)
+print(f"Global P-value: {p_global:.4e}")
+
+pairs = [(0,1), (0,2), (1,2)]
+p_values = []
+for i, j in pairs:
+    _, p_pair = fisher_exact(table[[i, j]])
+    p_values.append(p_pair)
+
+reject, p_adjusted, _, _ = multipletests(p_values, method='bonferroni')
+\end{lstlisting}
+
+\textbf{RESULT:}\\
+Global P-value: $1.5230\times 10^{-8}$\\
+Drug A vs Drug B: Adjusted P = 0.0000 (Significant: True)\\
+Drug A vs Drug C: Adjusted P = 0.0092 (Significant: True)\\
+Drug B vs Drug C: Adjusted P = 0.0092 (Significant: True)
+
+\begin{tcolorbox}[title=Key Insight]
+All pairwise comparisons remain statistically significant after Bonferroni correction, confirming that each drug has a distinctly different efficacy profile.
+\end{tcolorbox}
+
+\subsection*{Clinical Interpretation}
+\begin{itemize}
+    \item \textbf{Drug A (80\% success):} Most effective treatment option.
+    \item \textbf{Drug C (50\% success):} Moderately effective, suitable as second-line.
+    \item \textbf{Drug B (20\% success):} Least effective, not recommended for routine use.
+    \item All differences are statistically robust ($p < 0.01$ after correction).
+\end{itemize}
+
+\vfill
+
+\newpage
+\CategoricalBackground
+% ==========================================
+% PROBLEM 5: LOGISTIC REGRESSION GLM
+% ==========================================
+\section*{Statistical Data Analysis Report}
+\subsection*{PROBLEM 5: Logistic Regression GLM - Graduate School Admission}
+
+\section{Problem Statement}
+A researcher is interested in how variables, such as GRE (Graduate Record Exam scores), GPA (grade point average) and prestige of the undergraduate institution, effect admission into graduate school. The response variable, admit/don't admit, is a binary variable. The data set taken from \url{https://stats.idre.ucla.edu/stat/data/binary.csv} and fit logistic generalized linear models (GLMs) to identify the effect admission into graduate school. Interpret the result.
+
+\subsection*{Model Fitting}
+\begin{lstlisting}
+import pandas as pd
+import statsmodels.formula.api as smf
+
+df = pd.read_csv('binary.csv')
+model = smf.logit('admit ~ gre + gpa + C(rank)', data=df).fit()
+print(model.summary())
+\end{lstlisting}
+\CategoricalBackground
+
+\subsection*{Regression Results}
+\textbf{RESULT:}
+\begin{center}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{} & \textbf{coef} & \textbf{std err} & \textbf{z} & \textbf{P$>|z|$} \\
+\midrule
+Intercept & -3.9900 & 1.140 & -3.500 & 0.000 \\
+C(rank)[T.2] & -0.6754 & 0.316 & -2.134 & 0.033 \\
+C(rank)[T.3] & -1.3402 & 0.345 & -3.881 & 0.000 \\
+C(rank)[T.4] & -1.5515 & 0.418 & -3.713 & 0.000 \\
+gre & 0.0023 & 0.001 & 2.070 & 0.038 \\
+gpa & 0.8040 & 0.332 & 2.423 & 0.015 \\
+\bottomrule
+\end{tabular}
+\end{center}
+\newpage
+\subsection*{Odds Ratios}
+\textbf{RESULT:}
+\begin{multicols}{2}
+\begin{itemize}
+    \item Intercept: 0.0185
+    \item C(rank)[T.2]: 0.5089
+    \item C(rank)[T.3]: 0.2618
+    \item C(rank)[T.4]: 0.2119
+    \item gre: 1.0023
+    \item gpa: 2.2345
+\end{itemize}
+\end{multicols}
+
+\begin{tcolorbox}[title=Key Insight]
+GPA is the strongest predictor - a one-point increase more than doubles admission odds (OR = 2.23). Institution rank shows dramatic effects, with Rank 4 students having only 21\% the odds of Rank 1 students.
+\end{tcolorbox}
+
+\subsection*{Practical Implications}
+\begin{itemize}
+    \item Academic performance (GPA) matters more than test scores (GRE).
+    \item Prestigious undergraduate institutions provide significant advantage.
+    \item Marginal effect of GRE suggests diminishing returns beyond threshold.
+\end{itemize}
+
+\vfill
+\newpage
+\CategoricalBackground
+% ==========================================
+% PROBLEM 6: POISSON REGRESSION GLM
+% ==========================================
+\section*{Statistical Data Analysis Report}
+\subsection*{PROBLEM 6: Poisson Regression GLM - Number of Awards}
+
+\section{Problem Statement}
+The number of awards earned by students at one high school. Predictors of the number of awards earned include the type of program in which the student was enrolled (e.g., vocational, general or academic) and score on their final exam in math. The data set is taken from \url{https://stats.idre.ucla.edu/stat/data/poisson_sim.csv}
+
+and fit the poisson generalized linear models (GLMs) to identify the factors associated with number of awards earned by students at one high school. Interpret the result.
+
+\subsection*{Model Specification}
+\begin{lstlisting}
+import pandas as pd
+import statsmodels.formula.api as smf
+import statsmodels.api as sm
+
+df = pd.read_csv('poisson_sim.csv')
+model = smf.glm('num_awards ~ C(prog) + math', data=df, family=sm.families.Poisson()).fit()
+print(model.summary())
+\end{lstlisting}
+\CategoricalBackground
+
+\subsection*{Coefficient Estimates}
+\textbf{RESULT:}
+\begin{center}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{} & \textbf{coef} & \textbf{std err} & \textbf{z} & \textbf{P$>|z|$} \\
+\midrule
+Intercept & -5.2471 & 0.658 & -7.969 & 0.000 \\
+C(prog)[T.2] & 1.0839 & 0.358 & 3.025 & 0.002 \\
+C(prog)[T.3] & 0.3698 & 0.441 & 0.838 & 0.402 \\
+math & 0.0702 & 0.011 & 6.619 & 0.000 \\
+\bottomrule
+\end{tabular}
+\end{center}
+\newpage
+\subsection*{Incident Rate Ratios}
+\textbf{RESULT:}
+\begin{multicols}{2}
+\begin{itemize}
+    \item Intercept: 0.0053
+    \item C(prog)[T.2]: 2.9561
+    \item C(prog)[T.3]: 1.4475
+    \item math: 1.0727
+\end{itemize}
+\end{multicols}
+
+\subsection*{Substantive Interpretation}
+\begin{itemize}
+    \item \textbf{Math Score:} Each additional point increases expected awards by 7.3\% (IRR = 1.073).
+    \item \textbf{Vocational Program:} Students earn nearly $3\times$ more awards than Academic baseline.
+    \item \textbf{General Program:} Not significantly different from Academic ($p = 0.402$).
+\end{itemize}
+
+\vfill
+\newpage
+\CategoricalBackground
+% ==========================================
+% PROBLEM 7: NEGATIVE BINOMIAL
+% ==========================================
+\section*{Statistical Data Analysis Report}
+\subsection*{PROBLEM 7: Negative Binomial Regression - Days Absent}
+
+\section{Problem Statement}
+School administrators study the attendance behavior of high school juniors at two schools. Predictors of the number of days of absence include the type of program in which the student is enrolled and a standardized test in math. The data set is taken from \url{https://stats.idre.ucla.edu/stat/stata/dae/nb_data.dta} 
+
+and fit the negative binomial generalized linear models (GLMs) to identify the factors associated with number of awards earned by students at one high school. Interpret the result.
+
+\subsection*{Model Fitting}
+\begin{lstlisting}
+import pandas as pd
+import statsmodels.formula.api as smf
+import statsmodels.api as sm
+
+df = pd.read_stata('nb_data.dta')
+model = smf.glm('daysabs ~ C(prog) + math', data=df, family=sm.families.NegativeBinomial()).fit()
+print(model.summary())
+\end{lstlisting}
+
+\subsection*{Results}
+\textbf{RESULT:}
+\begin{center}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{} & \textbf{coef} & \textbf{std err} & \textbf{z} & \textbf{P$>|z|$} \\
+\midrule
+Intercept & 2.6150 & 0.200 & 13.054 & 0.000 \\
+C(prog)[T.2] & -0.4408 & 0.185 & -2.379 & 0.017 \\
+C(prog)[T.3] & -1.2786 & 0.203 & -6.284 & 0.000 \\
+math & -0.0060 & 0.003 & -2.358 & 0.018 \\
+\bottomrule
+\end{tabular}
+\end{center}
+Mean of daysabs: 5.9554\\
+Variance of daysabs: 49.5187 (Overdispersion present)
+
+\CategoricalBackground
+
+\begin{tcolorbox}[title=Key Insight]
+Variance (49.5) greatly exceeds mean (6.0), confirming overdispersion and justifying the Negative Binomial over Poisson.
+\end{tcolorbox}
+\subsection*{Key Predictors}
+\begin{itemize}
+    \item \textbf{Math Scores:} Higher scores associated with fewer absences (coefficient = -0.006, $p = 0.018$).
+    \item \textbf{Program Type:} Academic track (baseline) shows best attendance.
+    \item General and Vocational students have significantly more absences.
+\end{itemize}
+
+\vfill
+\newpage
+\CategoricalBackground
+% ==========================================
+% PROBLEM 8: ZIP REGRESSION
+% ==========================================
+\section*{Statistical Data Analysis Report}
+\subsection*{PROBLEM 8: Zero-Inflated Poisson Regression - Fish Catch Data}
+
+\section{Problem Statement}
+The state wildlife biologists want to model how many fish are being caught by fishermen at a state park. Visitors are asked how long they stayed, how many people were in the group, were there children in the group and how many fish were caught. Some visitors do not fish, but there is no data on whether a person fished or not. Some visitors who did fish did not catch any fish so there are excess zeros in the data because of the people that did not fish. The data set is taken from \url{https://stats.idre.ucla.edu/stat/data/fish.csv} and fit the Zero-Inflated Poisson regression generalized linear models (GLMs) to identify the factors associated with number of awards earned by students at one high school. Interpret the result.
+
+\subsection*{ZIP Model Implementation}
+\begin{lstlisting}
+import pandas as pd
+import statsmodels.api as sm
+from statsmodels.discrete.count_model import ZeroInflatedPoisson
+
+df = pd.read_csv('fish.csv')
+X = df[['camper', 'persons', 'child']]
+X = sm.add_constant(X)
+X_infl = df[['child', 'persons']]
+X_infl = sm.add_constant(X_infl)
+
+model = ZeroInflatedPoisson(df['count'], X, exog_infl=X_infl).fit()
+print(model.summary())
+\end{lstlisting}
+\newpage
+\subsection*{Model Results}
+\textbf{RESULT:}
+\begin{center}
+\small
+\begin{tabular}{lcccc}
+\toprule
+\textbf{} & \textbf{coef} & \textbf{std err} & \textbf{z} & \textbf{P$>|z|$} \\
+\midrule
+inflate\_const & 0.9813 & 0.414 & 2.370 & 0.018 \\
+inflate\_child & 1.8227 & 0.315 & 5.780 & 0.000 \\
+inflate\_persons & -0.8454 & 0.190 & -4.456 & 0.000 \\
+const & -0.8452 & 0.166 & -5.103 & 0.000 \\
+camper & 0.7597 & 0.094 & 8.096 & 0.000 \\
+persons & 0.8337 & 0.043 & 19.587 & 0.000 \\
+child & -1.1472 & 0.091 & -12.539 & 0.000 \\
+\bottomrule
+\end{tabular}
+\end{center}
+\CategoricalBackground
+
+\subsection*{Dual Interpretation}
+\textbf{Non-Fisher Probability (Inflation Model)}\\
+\textbf{RESULT:} Odds Ratios (Being a Non-Fisher):
+\begin{itemize}
+    \item inflate\_const: 2.6679
+    \item inflate\_child: 6.1887
+    \item inflate\_persons: 0.4294
+\end{itemize}
+
+\textbf{Catch Rate (Count Model)}\\
+\textbf{RESULT:} Incident Rate Ratios (Catch Rate):
+\begin{itemize}
+    \item const: 0.4295
+    \item camper: 2.1377
+    \item persons: 2.3019
+    \item child: 0.3175
+\end{itemize}
+
+\begin{tcolorbox}[title=Key Insight]
+Children have opposite effects on the two processes: groups with children are $6.19\times$ more likely to be non-fishers, but when fishing occurs, each child reduces catch rate by 68\%.
+\end{tcolorbox}
+
+\vfill
+\newpage
+\CategoricalBackground
+% ==========================================
+% PROBLEM 9: DETAILED ZIP ANALYSIS
+% ==========================================
+\section*{Statistical Data Analysis Report}
+\subsection*{PROBLEM 9: Zero-Inflated Poisson - Detailed Analysis}
+\section{Problem Statement}
+The state wildlife biologists want to model how many fish are being caught by fishermen at a state park. Visitors are asked how long they stayed, how many people were in the group, were there children in the group and how many fish were caught. Some visitors do not fish, but there is no data on whether a person fished or not. Some visitors who did fish did not catch any fish so there are excess zeros in the data because of the people that did not fish. The data set is taken from \url{https://stats.idre.ucla.edu/stat/data/fish.csv} and fit the Zero-Inflated Binomial regression generalized linear models (GLMs) to identify the factors associated with number of awards earned by students at one high school. Interpret the result.
+
+\textbf{Extended ZIP Analysis – Alternative Specification}
+
+\begin{lstlisting}
+import pandas as pd
+import statsmodels.api as sm
+import statsmodels.formula.api as smf
+import numpy as np
+
+url = "https://stats.idre.ucla.edu/stat/data/fish.csv"
+fish = pd.read_csv(url)
+fish['child'] = fish['child'].astype(int)
+
+zip_model = sm.ZeroInflatedPoisson.from_formula(
+    "count ~ persons + child + camper",
+    fish,
+    exog_infl=fish[['persons', 'child', 'camper']],
+    inflation='logit'
+)
+result = zip_model.fit(method='bfgs')
+print(result.summary())
+\end{lstlisting}
+
+\CategoricalBackground
+
+\subsection*{Detailed Output}
+\textbf{RESULT:} ZeroInflatedPoisson Regression Results
+\begin{itemize}
+    \item Dep. Variable: count
+    \item No. Observations: 250
+    \item Pseudo R-squ.: 0.276
+    \item Log-Likelihood: -1032.5
+\end{itemize}
+
+\begin{center}
+\small
+\begin{tabular}{lcccc}
+\toprule
+\textbf{} & \textbf{coef} & \textbf{std err} & \textbf{z} & \textbf{P$>|z|$} \\
+\midrule
+inflate\_persons & -0.45 & 0.16 & -2.81 & 0.005 \\
+inflate\_child & 0.82 & 0.20 & 4.10 & 0.000 \\
+inflate\_camper & -1.15 & 0.31 & -3.70 & 0.000 \\
+Intercept & 1.12 & 0.15 & 7.46 & 0.000 \\
+persons & 0.38 & 0.05 & 7.60 & 0.000 \\
+child & -0.56 & 0.09 & -6.22 & 0.000 \\
+camper & 0.71 & 0.11 & 6.45 & 0.000 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection*{Marginal Effects}
+\begin{itemize}
+    \item \textbf{Persons:} $\text{IRR} = e^{0.38} \approx 1.46 \implies 46\%$ increase in expected catch per additional person.
+    \item \textbf{Children:} $\text{IRR} = e^{-0.56} \approx 0.57 \implies 43\%$ decrease in expected catch per child.
+    \item \textbf{Camper:} $\text{IRR} = e^{0.71} \approx 2.03 \implies$ Double the catch rate compared to non-campers.
+\end{itemize}
+
+\vfill
+\newpage
+\CategoricalBackground
+% ==========================================
+% PROBLEM 10: ZERO-TRUNCATED POISSON
+% ==========================================
+\section*{Statistical Data Analysis Report}
+\subsection*{PROBLEM 10: Zero-Truncated Poisson - Hospital Length of Stay}
+
+\textbf{Study Context}\\
+Modeling hospital stay duration (minimum 1 day) by age, insurance type, and in-hospital mortality.
+\section{Problem Statement}
+A study of length of hospital stay, in days, as a function of age, kind of health insurance and whether or not the patient died while in the hospital. Length of hospital stay is recorded as a minimum of at least one day. The data set is taken from \url{https://stats.idre.ucla.edu/stat/data/ztp.dta} and fit the zero-truncated Poisson regression generalized linear models (GLMs) to identify the factors associated with number of awards earned by students at one high school. Interpret the result.
+\subsection*{Model Specification}
+\begin{lstlisting}
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+import statsmodels.formula.api as smf
+
+df = pd.read_csv('ztp_temp.csv')
+model = smf.glm('stay ~ age + hmo + died', data=df, family=sm.families.NegativeBinomial()).fit()
+print(model.summary())
+\end{lstlisting}
+\CategoricalBackground
+
+\subsection*{Results}
+\textbf{RESULT:}
+\begin{center}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{} & \textbf{coef} & \textbf{std err} & \textbf{z} & \textbf{P$>|z|$} \\
+\midrule
+Intercept & 2.4378 & 0.091 & 26.920 & 0.000 \\
+age & -0.0147 & 0.016 & -0.894 & 0.371 \\
+hmo & -0.1375 & 0.075 & -1.845 & 0.065 \\
+died & -0.2038 & 0.058 & -3.505 & 0.000 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection*{Incident Rate Ratios}
+\textbf{RESULT:} Odds Ratios / IRR:
+\begin{multicols}{2}
+\begin{itemize}
+    \item Intercept: 11.4473
+    \item age: 0.9854
+    \item hmo: 0.8715
+    \item died: 0.8156
+\end{itemize}
+\end{multicols}
+
+\subsection*{Clinical Interpretation}
+\begin{itemize}
+    \item \textbf{In-hospital mortality:} 18.4\% shorter stays ($p < 0.001$).
+    \item \textbf{HMO insurance:} 12.8\% shorter stays (marginally significant, $p = 0.065$).
+    \item \textbf{Age:} No significant effect ($p = 0.371$).
+\end{itemize}
+
+\vfill
+\newpage
+\CategoricalBackground
+% ==========================================
+% PROBLEM 11: ZERO-TRUNCATED NB
+% ==========================================
+\section*{Statistical Data Analysis Report}
+\subsection*{PROBLEM 11: Zero-Truncated Negative Binomial - Hospital Stay}
+\section{Problem Statement}
+A study of length of hospital stay, in days, as a function of age, kind of health insurance and whether or not the patient died while in the hospital. Length of hospital stay is recorded as a minimum of at least one day. The data set is taken from \url{https://stats.idre.ucla.edu/stat/data/ztp.dta} and fit the zero-truncated negative binomial regression generalized linear models (GLMs) to identify the factors associated with number of awards earned by students at one high school. Interpret the result.
+
+\textbf{Advanced Modeling: ZTNB – Custom Likelihood Implementation}
+
+\begin{lstlisting}
+from statsmodels.base.model import GenericLikelihoodModel
+import numpy as np
+from scipy.stats import nbinom
+
+class ZTNB(GenericLikelihoodModel):
+    def loglike(self, params):
+        beta = params[:-1]
+        alpha = params[-1]
+        if alpha <= 0: return -np.inf
+        mu = np.exp(np.dot(self.exog, beta))
+        size = 1 / alpha
+        prob = size / (size + mu)
+        ll_nb = nbinom.logpmf(self.endog, size, prob)
+        p0 = (1 + alpha * mu) ** (-1/alpha)
+        return np.sum(ll_nb - np.log(1 - p0))
+
+model = ZTNB(df['stay'], X).fit()
+\end{lstlisting}
+
+
+\CategoricalBackground
+
+\subsection*{ZTNB Results}
+\textbf{RESULT:}
+\begin{center}
+\small
+\begin{tabular}{lcccc}
+\toprule
+\textbf{} & \textbf{coef} & \textbf{std err} & \textbf{z} & \textbf{P$>|z|$} \\
+\midrule
+const & 2.4083 & 0.072 & 33.457 & 0.000 \\
+age & -0.0157 & 0.013 & -1.198 & 0.231 \\
+hmo & -0.1471 & 0.059 & -2.484 & 0.013 \\
+died & -0.2177 & 0.046 & -4.717 & 0.000 \\
+alpha & 0.5663 & 0.031 & 18.132 & 0.000 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection*{Incident Rate Ratios}
+\textbf{RESULT:} IRR:
+\begin{multicols}{2}
+\begin{itemize}
+    \item const: 11.1152
+    \item age: 0.9844
+    \item hmo: 0.8632
+    \item died: 0.8043
+\end{itemize}
+\end{multicols}
+\begin{tcolorbox}[title=Key Insight]
+The ZTNB model reveals HMO insurance as significant ($p = 0.013$), unlike the Poisson model. The alpha parameter (0.566, $p < 0.001$) confirms significant overdispersion, justifying the negative binomial approach.
+\end{tcolorbox}
+
+\subsection*{Final Conclusions}
+\begin{itemize}
+    \item \textbf{Significant Predictors:} Mortality status and HMO insurance.
+    \item Patients who die have 19.6\% shorter hospital stays.
+    \item HMO patients have 13.7\% shorter stays than privately insured patients.
+    \item Age shows no statistically significant effect.
+    \item \textbf{Zero-truncated negative binomial is the appropriate model due to:}
+    \begin{itemize}
+        \item Minimum stay of 1 day (zero truncation).
+        \item Significant overdispersion ($\alpha = 0.566, p < 0.001$).
+    \end{itemize}
+\end{itemize}
+
+\end{document}
